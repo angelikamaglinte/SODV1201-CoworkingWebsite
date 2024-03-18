@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexWorkspace | Property and Workspace Management</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/styles-features.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- icons -->
+    <!-- <link rel="stylesheet" href="font-awesome/css/all.min.css"> -->
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navigationBarContainer">
+        <div class="logoContainer">
+            <div id="logoImage"><a href="#"><img class="flexWorkspaceLogo" src="images/logos/FlexWorkspace-white.png"
+                        alt="FlexWorkspace Logo"></a></div>
+        </div>
+        <div class="tabContainer">
+            <!-- <div class="aboutUsContainer">
+                <div id="aboutUsTab"><a href="#aboutFlexworkspace">About</a></div>
+            </div>
+            <div class="contactUsContainer"> 
+                <div id="contactUsTab">
+                    <a href="#footer">Contact Us</a>
+                </div>
+            </div> -->
+            <div class="logOutContainer">
+                <button class="fill-btn">
+                    <div class="btn-text">
+                        <a href="login.html">Log Out</a>
+                        <i class="fa-solid fa-arrow-down" id="logOutIcon"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Owner Page -->
+    <section>
+        <div id="owner">
+            <div class="ownerHeading">
+                <div class="leftDiv">
+                    <img id="ownerTagLineImage" src="images/texts/OwnerPage(Invent. Shape. Materialize.).png">
+                    <img id="leftDivImage1" src="images/backdrop images/ownerPageHeadingImage.jpeg">
+                </div>
+                <div class="rightDiv">
+                    <div>
+                        <p id="ownerPromoTagLine1">Discover top-tier workspaces tailored for productivity.
+                            Elevate your offerings with premium, curated spaces.
+                            Join us in redefining the standard for quality work environments.
+                        </p>
+                    </div>
+                    <div>
+                        <button>
+                            <div>
+                                <a href="#workspaces">View Workspaces</a>
+                                <!-- <i class="fa-solid fa-arrow-down" id="viewWorkspaceIcon"></i> -->
+                            </div>
+                        </button>
+                    </div>
+                    <div id="rightDivImageContainer">
+                        <img id="rightDivImage1" src="images/backdrop images/ownerPageHeadingImage2.jpeg">
+                        <img id="rightDivImage2" src="https://static.thenounproject.com/png/969639-200.png"
+                            alt="spark icon">
+                    </div>
+                    <div>
+                        <p id="ownerPromoTagLine2">
+                            Expand Your Reach, Amplify Your Impact, and Elevate Your Business: Add More Workspaces Today
+                            to
+                            Accommodate Diverse Needs and Fuel Growth!
+                        </p>
+                    </div>
+                    <div id="buttonContainers">
+                        <button id="addPropertyBtn">
+                            <div>
+                                <a href="#propertiesSection">Add Property</a>
+                                <i class="fa-solid fa-arrow-down" id="addPropertyIcon"></i>
+                            </div>
+                        </button>
+                        <button id="addWorkspaceBtn">
+                            <div>
+                                <a href="#workspaces">Add Workspace</a>
+                                <i class="fa-solid fa-arrow-down" id="addWorkspaceIcon"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Property Section -->
+            <div class="propertiesSection" id="propertiesSection">
+                <div id="addProperty" class="add-property-container">
+                    <div id="addPropertyLeftDiv" class="add-property-left">
+                        <img src="images/texts/OwnerPage(Enlist Your Property).png" id="addPropertyTagLine">
+                        <p id="propertyRules">
+                            Posting your property on our platform comes with certain rules, regulations, and
+                            responsibilities
+                            to ensure a positive and transparent experience for all parties involved. As a property
+                            owner, it's
+                            crucial to adhere to local laws and regulations governing property listings, including
+                            providing
+                            accurate and up-to-date information about your property. Additionally, owners are
+                            responsible for
+                            ensuring that their listings comply with our platform's guidelines and standards, which
+                            prioritize
+                            honesty, integrity, and fairness. This includes presenting the property truthfully,
+                            disclosing any
+                            relevant information, and respecting the privacy and rights of others. By posting your
+                            property
+                            with us, you agree to uphold these principles and contribute to creating a trustworthy and
+                            reliable
+                            marketplace for all our users.
+                        </p>
+                    </div>
+
+                    <form id="propertyForm" class="add-property-form">
+                        <!-- Address -->
+                        <input type="text" id="address" name="address" placeholder="Address" required><br>
+                        <!-- Neighborhood -->
+                        <input type="text" id="neighborhood" name="neighborhood" placeholder="Neighborhood"
+                            required><br>
+                        <!-- Square Feet -->
+                        <!-- <label for="squareFeet" id="squareFeetLabel">Square Feet:</label> -->
+                        <div id="selectedSquareFeet">Square Feet:</div>
+                        <div id="squareFeetButtons">
+                            <button type="button" onclick="setSquareFeet(100)" id="squareFeetBtn">100 sq ft</button>
+                            <button type="button" onclick="setSquareFeet(150)" id="squareFeetBtn">150 sq ft</button>
+                            <button type="button" onclick="setSquareFeet(200)" id="squareFeetBtn">200 sq ft</button>
+                            <button type="button" onclick="setSquareFeet(250)" id="squareFeetBtn">250 sq ft</button>
+                        </div>
+                        <input type="hidden" id="squareFeet" name="squareFeet">
+                        <!-- Parking Garage -->
+                        <div id="parking">
+                            <label for="parkingGarage" id="parkingLabel">Parking Garage Included:</label>
+                            <input type="checkbox" id="parkingGarage" name="parkingGarage"><br>
+                        </div>
+                        <div id="transportation">
+                            <!-- Nearby Transportation -->
+                            <label for="publicTranspo" id="transpoLabel">Near Public Transportation:</label>
+                            <input type="checkbox" id="publicTranspo" name="publicTranspo"><br>
+                        </div>
+                        <button type="button" onclick="validateAndAddProperty()" id="addPropertyButton">Add
+                            Property</button>
+                    </form>
+                </div>
+
+            </div>
+            <!-- List of Added Properties -->
+            <div class="propertyListContainer">
+                <h1 id="listingDetails">Property Listing Details</h1>
+                <div class="propertyListContainer1">
+                    <div id="propertyList">
+                        <!-- <p>Your Listing Details</p> -->
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Workspace Section -->
+            <div class="workspaceSection" id="workspaces">
+                <div id="addWorkspace" class="add-workspace-container">
+                    <div id="addWorkspaceLeftDiv" class="add-property-left">
+                        <img id="addWorkspaceTagLine" src="images/texts/OwnerPage(Introduce Your Workspace).png"
+                            alt="Introduce Your Workspace" srcset="">
+                        <p id="workspaceRules">
+                            Before adding your workspace to our platform, it's important to familiarize yourself with
+                            our guidelines and standards to ensure a seamless and beneficial experience for both hosts
+                            and occupants. As a workspace host, you play a vital role in maintaining the integrity and
+                            reputation of our platform. We require all hosts to provide accurate and comprehensive
+                            information about their workspace, including detailed descriptions, amenities, and photos.
+                            Transparency is key, so please ensure that your listing reflects the true nature of your
+                            workspace, including any limitations or restrictions. Furthermore, hosts must comply with
+                            local laws and regulations regarding workspace rentals, ensuring that their offerings meet
+                            legal requirements and safety standards. Our platform prioritizes honesty, integrity, and
+                            fairness, and we expect all hosts to uphold these values in their listings and interactions
+                            with potential occupants. By posting your workspace on our platform, you agree to abide by
+                            these principles and contribute to fostering a positive and trustworthy environment for all
+                            our users. Together, we can create a vibrant and thriving community of workspace enthusiasts
+                            and professionals.
+                        </p>
+                    </div>
+                    <form id="workspaceForm" class="add-workspace-form">
+                        <!-- Property Name -->
+                        <label for="propertyName" id="propertyNameLabel">Property Name:</label>
+                        <select id="propertyName" name="propertyName">
+                            <!-- Options will be populated dynamically -->
+                        </select><br>
+                        <!-- Workspace Type -->
+                        <label for="workspaceType" id="workspaceTypeLabel">Workspace Type:</label>
+                        <select id="workspaceType" name="workspaceType" required>
+                            <option value=""></option>
+                            <option value="meeting room">Meeting Room</option>
+                            <option value="office area">Office Area</option>
+                            <option value="desk in open area">Desk in Open Area</option>
+                        </select><br>
+                        <!-- Capacity -->
+                        <div id="selectedCapacity"><span style="font-weight: bold;">Capacity: </span>
+                            <span id="capacityText"></span>
+                        </div>
+                        <div id="capacityButtons">
+                            <button type="button" onclick="setCapacity(1)" id="capacityBtn">1</button>
+                            <button type="button" onclick="setCapacity(5)" id="capacityBtn">5</button>
+                            <button type="button" onclick="setCapacity(10)" id="capacityBtn">10</button>
+                            <button type="button" onclick="setCapacity(15)" id="capacityBtn">15</button>
+                        </div>
+                        <input type="hidden" id="capacity" name="capacity">
+                        <!-- Smoking -->
+                        <div id="smokingAllowedLabel">
+                            <label for="smokingAllowed" >Smoking Allowed:</label>
+                            <input type="checkbox" id="smokingAllowed" name="smokingAllowed"><br>
+                        </div>
+                        
+                        <!-- Lease Term -->
+                        <!-- <div id="selectedLeaseTerm"><span style="font-weight: bold;">Lease Term:</span><span id="leaseTermText"></span></div>
+                        <div id="leaseTermButtons">
+                            <button type="button" onclick="setLeaseTerm('day')" id="leaseTermBtn">Day</button>
+                            <button type="button" onclick="setLeaseTerm('week')" id="leaseTermBtn">Week</button>
+                            <button type="button" onclick="setLeaseTerm('month')" id="leaseTermBtn">Month</button>
+                        </div> -->
+
+                        <div id="selectedLeaseTerm">
+                            <span style="font-weight: bold;">Lease Term:</span>
+                            <span id="leaseTermText"></span>
+                        </div>
+                        <div id="leaseTermButtons">
+                            <button type="button" onclick="setLeaseTerm('day')" id="leaseTermBtn">Day</button>
+                            <button type="button" onclick="setLeaseTerm('week')" id="leaseTermBtn">Week</button>
+                            <button type="button" onclick="setLeaseTerm('month')" id="leaseTermBtn">Month</button>
+                        </div>
+
+
+                        <input type="hidden" id="leaseTerm" name="leaseTerm">
+                        <!-- Availability Date -->
+                        <label for="availabilityStartDate" id="availabilityStartDateLabel">Availability Start
+                            Date:</label>
+                        <input type="date" id="availabilityStartDate" name="availabilityStartDate" required><br>
+                        <label for="availabilityEndDate" id="availabilityEndDateLabel">Availability End Date:</label>
+                        <input type="date" id="availabilityEndDate" name="availabilityEndDate" required><br>
+                        <!-- Price -->
+                        <input type="number" id="price" name="price" placeholder="Enter desired price here..." required><br>
+
+                        <button type="button" onclick="validateAndAddWorkspace()" id="addWorkspaceButton">Add
+                            Workspace</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- List of Added Workspaces -->
+            <div class="workspaceListContainer">
+                <h1 id="listingDetails">Workspace Listing Details</h1>
+                <div class="workspaceListContainer1">
+                    <div id="workspaceList">
+                        <!-- <p>Your Listing Details</p> -->
+
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Modal for editing property -->
+            <div id="propertyEditModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Edit Property</h2>
+                    <br><br><br>
+                    <label for="editAddress" id="editPropertyAddressLabel">Address:</label>
+                    <input type="text" id="editAddress" required><br>
+                    <label for="editNeighborhood" id="editPropertyNeighborhoodLabel">Neighborhood:</label>
+                    <input type="text" id="editNeighborhood" required><br>
+                    <!-- <label for="editSquareFeet">Square Feet:</label> -->
+
+                    <label for="editSquareFeet" id="editPropertySquareFeetLabel">Square Feet:
+                    </label>
+
+                    <input type="text" id="editSquareFeet" required><span id="sqft">sq ft</span>
+                    <br>
+                    <div id="editSquareFeetButtons">
+                        <button type="button" onclick="setEditSquareFeet(100)" id="squareFeetBtn">100 sq ft</button>
+                        <button type="button" onclick="setEditSquareFeet(150)" id="squareFeetBtn">150 sq ft</button>
+                        <button type="button" onclick="setEditSquareFeet(200)" id="squareFeetBtn">200 sq ft</button>
+                        <button type="button" onclick="setEditSquareFeet(250)" id="squareFeetBtn">250 sq ft</button>
+                    </div>
+                    <!-- Parking Garage Checkbox -->
+                    <label for="editParkingGarage" id="editPropertyParkingLabel">Parking Garage:</label>
+                    <input type="checkbox" id="editParkingGarage"><br><br>
+                    <!-- Nearby Transportation -->
+                    <label for="editPublicTranspo" id="editPropertyPublicTranspoLabel">Near Public
+                        Transportation:</label>
+                    <input type="checkbox" id="editPublicTranspo"><br><br><br><br><br>
+                    <button id="savePropertyChangesBtn">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- Modal for editing workspace -->
+            <div id="workspaceEditModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Edit Workspace</h2>
+                    <br><br><br>
+                    <!-- Property Name - display only -->
+                    <label for="editPropertyName" id="propertyNameLabel">Property Name:</label>
+                    <input type="text" id="editPropertyName" disabled><br>
+
+                    <!-- Workspace Type -->
+                    <div id="editWorkspaceTypeLabel">
+                        <label for="editWorkspaceTypeLabel">Workspace Type:</label>
+                        <select id="editWorkspaceType" name="workspaceType" required>
+                            <option value=""></option>
+                            <option value="meeting room">Meeting Room</option>
+                            <option value="office area">Office Area</option>
+                            <option value="desk in open area">Desk in Open Area</option>
+                        </select>
+                    </div>
+
+                    <!-- Capacity -->
+                    <!-- <div id="editSelectedCapacity"><span style="font-weight: bold;">Capacity:</span></div>
+                    <div id="capacityButtons">
+                        <button type="button" onclick="editSetCapacity(1)" id="capacityBtn">1</button>
+                        <button type="button" onclick="editSetCapacity(5)" id="capacityBtn">5</button>
+                        <button type="button" onclick="editSetCapacity(10)" id="capacityBtn">10</button>
+                        <button type="button" onclick="editSetCapacity(15)" id="capacityBtn">15</button>
+                    </div>
+                    <input type="hidden" id="editCapacity" name="capacity" required> -->
+
+                    <div id="editSelectedCapacity"><span style="font-weight: bold;" id="editCapacityLabel">Capacity: </span><span
+                            id="editCapacityText"></span></div>
+                    <div id="editCapacityButtons">
+                        <button type="button" onclick="editSetCapacity(1)" id="editCapacityBtn">1</button>
+                        <button type="button" onclick="editSetCapacity(5)" id="editCapacityBtn">5</button>
+                        <button type="button" onclick="editSetCapacity(10)" id="editCapacityBtn">10</button>
+                        <button type="button" onclick="editSetCapacity(15)" id="editCapacityBtn">15</button>
+                    </div>
+                    <input type="hidden" id="editCapacity" name="capacity" required>
+
+
+                    <!-- Smoking Allowed Checkbox -->
+                    <div id="editSmokingAllowedLabel">
+                        <label for="editSmokingAllowed">Smoking Allowed:</label>
+                        <input type="checkbox" id="editSmokingAllowed"><br><br>
+                    </div>
+                    
+
+                    <!-- Lease Term -->
+                    <div id="editSelectedLeaseTerm">
+                        <span style="font-weight: bold;" id="editLeaseTermLabel">Lease Term:</span>
+                        <span id="editLeaseTermText"></span>
+                    </div>
+                    <div id="leaseTermButtons">
+                        <button type="button" onclick="editSetLeaseTerm('day')" id="leaseTermBtn">Day</button>
+                        <button type="button" onclick="editSetLeaseTerm('week')" id="leaseTermBtn">Week</button>
+                        <button type="button" onclick="editSetLeaseTerm('month')" id="leaseTermBtn">Month</button>
+                    </div>
+                    <input type="hidden" id="editLeaseTerm" name="leaseTerm" required>
+
+
+                
+
+                    <!-- Availability Date -->
+                    <label for="availabilityStartDate" id="editAvailabilityStartDateLabel">Availability Start
+                        Date:</label>
+                    <input type="date" id="editAvailabilityStartDate" name="availabilityStartDate" required><br>
+                    <label for="availabilityEndDate" id="editAvailabilityEndDateLabel">Availability End Date:</label>
+                    <input type="date" id="editAvailabilityEndDate" name="availabilityEndDate" required><br>
+                    <!-- Price -->
+
+                    <label for="editPrice" id="priceLabel">Price:</label>
+                    <input type="number" id="editPrice" required><br><br><br><br><br>
+
+                    <button id="saveWorkspaceChangesBtn">Save Changes</button>
+                </div>
+            </div>
+
+            <!-- Modal for displaying validation message -->
+            <div id="validationModal" class="modal">
+                <div class="modal-content">
+                    <!-- <span class="close">&times;</span> -->
+                    <h2>Please fill in all required fields.</h2>
+                    <button id="closeValidationBtn">Close</button>
+                </div>
+            </div>
+
+            <!-- Modal for displaying validation message -->
+            <!-- <div id="leaseValidationModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Kindly make sure Start and End Dates are properly selected.</h2>
+                    <button id="closeValidationBtn">Close</button>
+                </div>
+            </div> -->
+
+            <!-- Modal for successful property listing -->
+            <div id="successfulListing" class="modal">
+                <div class="modal-content">
+                    <!-- <span class="close">&times;</span> -->
+                    <h2>Congratulations! Your property has been successfully listed.</h2>
+                    <button id="closeSuccessAddedPropertyBtn">Close</button> <!-- Changed ID to closeSuccessBtn -->
+                </div>
+            </div>
+
+            <!-- Modal for successful workspace listing -->
+            <div id="successfulWorkspaceListing" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Congratulations! You have successfully added a workspace.</h2>
+                    <button id="closeSuccessWorkspaceAddedBtn">Close</button> <!-- Changed ID to closeSuccessBtn -->
+                </div>
+            </div>
+        </div>
+        <!-- </section> -->
+        <!-- Coworker Page -->
+        <!-- <section id="CoworkerOnly" style="display: none;"> -->
+
+        <!-- </section> -->
+        <!-- Footer Section -->
+        <footer id="footer">
+            <img id="footerImage" src="images/footer/Footer Image(Persist and Proceed).png">
+            <div id="socialLogos">
+                <img id="twitter" src="images/footer/twitter.png">
+                <img id="instagram" src="images/footer/instagram.png">
+                <img id="git" src="images/footer/git.png">
+                <img id="youtube" src="images/footer/youtube.png">
+            </div>
+        </footer>
+        <!-- script -->
+        <script src="javascript/script-features.js"></script>
+        <script src="https://kit.fontawesome.com/e2ac5a529b.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

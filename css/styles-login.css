@@ -1,0 +1,126 @@
+/* Font */
+* {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "slnt" 0;
+}
+
+/* Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: #282727;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Image Proportions */
+img {
+    width: auto;
+    height: 150%;
+}
+
+/* Left side of the page */
+#left_section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #282727;
+
+}
+
+/* Right side of the page */
+#right_section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('https://i.pinimg.com/564x/39/af/c9/39afc9b88f0032ae6c4234c41832bf88.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px 0 0 20px;
+}
+
+/* Login Container */
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 40px;
+    position: relative;
+    top: 15%;
+    z-index: 1;
+    color: white;
+    text-align: center;
+
+}
+
+img {
+    height: auto;
+    width: 200px;
+}
+
+/* Sign up page link text */
+#pagelink {
+    color: white;
+}
+
+/* Input field styling */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    background-color: transparent;
+    outline: none;
+    color: white;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: white;
+
+}
+
+input[type="email"]:hover,
+input[type="password"]:hover {
+    border-bottom: 2px solid #ccc;
+}
+
+
+/* Login Button Styling */
+button {
+    width: 100%;
+    background-color: gray;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #212223;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}

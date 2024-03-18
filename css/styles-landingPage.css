@@ -1,0 +1,298 @@
+/* FlexWorkspace Styling */
+
+* {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #1b1b1b; */
+    background-color: black;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+/* Navigation Bar - Styling */
+.navigationBarContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px;
+    padding-top: 22px;
+}
+
+.contentSection {
+    color: white;
+}
+
+.tabContainer {
+    display: flex;
+}
+
+.logoContainer {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+}
+
+.flexWorkspaceLogo {
+    width: 25%;
+    margin-left: -18px;
+    position: relative;
+}
+
+#logoImage {
+    padding: 0px;
+    margin: 0px;
+}
+
+
+#logoText {
+    font-family: Inter;
+    font-size: 45px;
+    font-weight: 700;
+    line-height: 110.7px;
+    letter-spacing: -2px;
+    word-spacing: 0px;
+    margin: 0px;
+    padding: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+/* Navigation Bar - Tab Font Styling */
+#aboutUsTab,
+#contactUsTab {
+    color: white;
+    font-size: 18px;
+    line-height: 24px;
+    vertical-align: baseline;
+    letter-spacing: -0.5px;
+    word-spacing: 0px;
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-style: normal;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    text-transform: none;
+    text-decoration: none solid white;
+    text-align: left;
+    text-indent: 0px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#aboutUsTab {
+    margin-right: 20px;
+}
+
+#contactUsTab {
+    margin-right: 80px;
+}
+
+
+
+/* About Us, Contact Us Tabs - Animation Styling */
+#aboutUsTab::after,
+#contactUsTab::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background-color: white;
+    bottom: -8px;
+    left: 0;
+    transition: width 0.4s ease;
+}
+
+#aboutUsTab:hover::after,
+#contactUsTab:hover::after {
+    width: 100%;
+    transition: width 0.4s ease;
+    transform-origin: left;
+}
+
+
+/* Tagline Styling */
+
+#tagLine {
+    background-image: url('/images/backdrop images/backkdrop.jpg');
+    /* Add the backdrop image as the background */
+    background-size: auto 100%;
+    /* Set width to auto and height to 100% */
+    background-position: left;
+    /* Position the background image on the left side */
+    background-repeat: no-repeat;
+    position: relative;
+    width: auto;
+    height: 800px;
+    /* Adjust height as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#inspiration {
+    width: 55%;
+    position: relative;
+    top: 25%;
+    right: 7.5%;
+
+}
+
+#starts {
+    width: 40%;
+    position: relative;
+    left: 12%;
+    top: -10%;
+}
+
+#here {
+    width: 22.5%;
+    position: relative;
+    left: 20%;
+    top: -10%;
+
+}
+
+#miniImage {
+    position: relative;
+    left: 37.5%;
+    top: 45%;
+    height: 40%;
+}
+
+
+/* Join us Button Styling */
+
+button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 20px;
+    /* Adjust border radius for curved ends */
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+    top: -20%
+}
+
+button:hover {
+    background-color: gray;
+    color: black;
+}
+
+
+/* Content Styling */
+#para {
+    text-align: justify;
+    /* font-weight: lighter; */
+    font-size: medium;
+    color: #ccc;
+}
+
+#aboutFlexworkspace {
+    border-top: solid white 1px;
+    margin-top: 10%;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow wrapping */
+
+}
+
+#aboutUsTitle {
+    color: white;
+    margin-top: 5%;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+#aboutUsImage {
+    margin-top: 10%;
+    width: 30%;
+}
+
+#aboutParagraph {
+    color: white;
+    margin-right: 40%;
+    padding-top: 5%;
+    width: 60%;
+    /* Adjust width */
+
+}
+
+#aboutUsImage2 {
+    width: 75%;
+    margin-left: 20%;
+}
+
+#aboutUsImage2div {
+    /* width: 10%; */
+    float: right;
+    /* Float to the right */
+    margin-top: -32%;
+    /* Adjust margin as needed */
+    padding-bottom: 10%;
+}
+
+
+/* Footer Styling */
+#footer {
+    border-top: solid white 1px;
+    margin-top: 16%;
+    margin-right: -50%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    /* Allow wrapping */
+}
+
+#footerImage {
+    margin-top: 5%;
+    width: 20%;
+    margin-left: 5%;
+    margin-right: 90%;
+}
+
+#twitter {
+    width: 20%;
+}
+
+#youtube {
+    width: 20%;
+}
+
+#instagram {
+    width: 20%;
+}
+
+#git {
+    width: 20%;
+}
+
+#socialLogos{
+      /* width: 10%; */
+      float: right;
+      /* Float to the right */
+      margin-top: -7%;
+      /* Adjust margin as needed */
+      padding-bottom: 10%;
+      width: 10%;
+
+      position: relative;
+      right: -80%;
+}

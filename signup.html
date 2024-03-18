@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexWorkspace | Sign Up</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/styles-signup.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="left_section"><!-- MARM: for the image -->
+    </div>
+    <!-- MARM: sign up form -->
+    <div id="right_section">
+        <div class="container">
+            <img src="images/logos/FlexWorkspace-white.png" alt="WebsiteLogo">
+            <h2>Sign Up</h2>
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <input type="password" id="confirmpassword" placeholder="Confirm Password">
+            <input type="text" id="phone" placeholder="Enter phone number" onkeypress="return isNumberKey(event)"
+                maxlength="10">
+            <div id="role">
+                <label for="role">Role:</label>
+                <select id="role_dropdown">
+                    <option value=""></option>
+                    <option value="owner">Owner</option>
+                    <option value="coworker">Coworker</option>
+                </select>
+            </div>
+            <button id="signUpUser" class="fill-btn">Sign Up</button>
+            <div>
+                <p>Already have an account? <a href="login.html" id="pagelink">Log In</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- MARM: success sign up message -->
+    <div id="myModal" class="modal">
+        <!-- MARM: modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Welcome to FlexWorkspace, <span id="userNameModal"></span>!</p>
+            <p>Thanks for creating an account.</p>
+        </div>
+    </div>
+    <!-- MARM: if fields are not filled out yet -->
+    <div id="errorModal" class="modal">
+        <!-- MARM: error modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please fill out all required fields before signing up.</p>
+        </div>
+    </div>
+    <!-- MARM: if password and confirm password is not the same -->
+    <div id="isPassSame" class="modal">
+        <!-- MARM: modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Passwords do not match. Please make sure your password and confirm password fields are identical.
+            </p>
+        </div>
+    </div>
+    <!-- MARM: invalid phone number -->
+    <div id="invalidPhone" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Please enter a valid phone number with 10 digits.</p>
+        </div>
+    </div>
+
+    <script src="javascript/script-signup.js"></script>
+</body>
+
+</html>
