@@ -334,9 +334,16 @@ function validateAndAddWorkspace() {
 
   // Validate inputs for workspace
   if (!property) {
-    alert('Please select a property.');
+    // alert('Please select a property.');
+    const selectPropertyMessage = document.getElementById('selectPropertyMessage');
+    selectPropertyMessage.style.display = 'block';
+    document.getElementById('selectPropertyCloseBtn').onclick = function () {
+      selectPropertyMessage.style.display = 'none';
+    };
     return;
   }
+
+  
 
   const workspaceType = document.getElementById('workspaceType').value;
   const capacity = document.getElementById('capacity').value;
