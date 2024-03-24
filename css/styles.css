@@ -250,3 +250,13 @@ button:hover {
       position: relative;
       right: -80%;
 }
+
+.copyrights {
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+}
+
+#copyrights {
+    color: white;
+}

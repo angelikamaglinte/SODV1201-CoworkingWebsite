@@ -5,70 +5,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workspace Filter</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link your stylesheet if you have one -->
+    <link rel="stylesheet" href="css/styles-coworker.css"> <!-- Link your stylesheet if you have one -->
 </head>
 
 <body>
-    <h1>Workspace Filter</h1>
-
-    <!-- Search Bar -->
-    <div class="search">
-        <label for="search">Search by Name:</label>
-        <input type="text" id="search" placeholder="Search...">
+    <div id="NavigationBar">
+        <img id="CoworkerLogo" src="images/logos/FlexWorkspace-white.png">
+        <a href="login.html"><button>Log Out</button></a>
     </div>
-    <br>
+    <img id="CoworkerExploreDiscoverGrow" src="images/texts/Coworker(Explore, discover , grow).png">
+    <img id="rightDivImage2" src="https://static.thenounproject.com/png/969639-200.png" alt="spark icon">
+    <div class="container">
+        <div id="leftDivImage1">
+            <!-- Your left div image goes here -->
+            <img src="images/backdrop images/Coworker-left Image.jpg" alt="">
+        </div>
+        <div id="ownerPromoTagLine1">
+            <!-- Your tagline content goes here -->
+            Embark on an extraordinary journey towards peak productivity within our meticulously curated exclusive
+            workspaces, where every detail is thoughtfully considered to enhance your professional prowess. Step into
+            handpicked, deluxe environments, meticulously designed to optimize your workflow and amplify your
+            efficiency. Join forces with us to redefine the benchmark for superior workspaces, ushering in a new era of
+            innovation and success. Experience unparalleled comfort, sophistication, and functionality as you immerse
+            yourself in environments crafted with your success in mind. Elevate your work experience and unlock your
+            full potential in spaces meticulously tailored to cater to your every need. <br><br>
+            <p id="seeWorkspaces"><a href="#seeWorkspacesSection"><button>See Workspaces </button></a></p>
 
-    <!-- Filters Section -->
-    <div class="filters">
-        <label for="sort">Sort by:</label>
-        <select id="sort">
-            <option value="name">Name</option>
-            <option value="neighbourhood">Neighbourhood</option>
-            <option value="workspace_type">Workspace Type</option>
-            <option value="capacity">Capacity</option>
-            <option value="price">Price</option>
-            <!-- Add more options if needed -->
-        </select>
-<br>
-<br>
-        <label><input type="checkbox" id="parking"> Parking</label>
-        <label><input type="checkbox" id="smoking"> Smoking Allowed</label>
-        <label><input type="checkbox" id="publicTransportation"> Public Transportation</label> <!-- New -->
-        <label for="squareFeet">Square Feet:</label>
-        <select id="squareFeet">
-            <option value="">Any</option>
-            <option value="100">100</option>
-            <option value="150">150</option>
-            <option value="200">200</option>
-            <option value="250">250</option>
-        </select>
-        <br>
-        <br>
-        <label for="capacity">Capacity:</label>
-        <select id="capacity">
-            <option value="">Any</option>
-            <option value="1">1</option>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-        </select>
-        <br>
-        <br>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate">
-        <br>
-        <br>
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate">
-        <br>
-        
+        </div>
     </div>
 
 
+
+    <br><br><br>
+    <div id="seeWorkspacesSection">
+        <div id="coworkerLeftSearchText">
+            <img id="coworkerLeftSearchTextImage" src="images\texts\Coworker(find your workspace)-white.png">
+            <div class="search">
+                <input type="text" id="search" placeholder="Search address here...">
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filters">
+            <h2 id="filtersText">Filters</h2>
+            <label for="sort">Sort by:</label>
+            <select id="sort">
+                <option value="name">Name</option>
+                <option value="neighbourhood">Neighbourhood</option>
+                <option value="workspace_type">Workspace Type</option>
+                <option value="capacity">Capacity</option>
+                <option value="price">Price</option>
+                <!-- Add more options if needed -->
+            </select>
+            <br>
+            <br>
+            <label for="squareFeet">Square Feet:</label>
+            <select id="squareFeet">
+                <option value="">Any</option>
+                <option value="100">100</option>
+                <option value="150">150</option>
+                <option value="200">200</option>
+                <option value="250">250</option>
+            </select>
+            <br>
+            <br>
+            <label for="capacity">Capacity:</label>
+            <select id="capacity">
+                <option value="">Any</option>
+                <option value="1">1</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+            </select>
+            <br>
+            <br>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate">
+            <br>
+            <br>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate">
+            <br>
+            <br>
+            <div id="checkboxes">
+                <label><input type="checkbox" id="parking"> Parking</label>
+                <label><input type="checkbox" id="smoking"> Smoking Allowed</label>
+                <label><input type="checkbox" id="publicTransportation"> Public Transportation</label>
+            </div>
+        </div>
+    </div>
     <!-- Workspace List -->
     <div id="workspace-list"></div>
 
-    <script src="testing1.js"></script> <!-- Link your JavaScript file -->
+    <script src="javascript/script-coworker.js"></script> <!-- Link your JavaScript file -->
 </body>
 
 </html>
