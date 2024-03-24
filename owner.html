@@ -5,33 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlexWorkspace | Property and Workspace Management</title>
-    <!-- css -->
-    <link rel="stylesheet" href="css/styles-features.css">
-    <!-- fonts -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles-owner.css">
+    <link rel="stylesheet" href="css/styles-sortownerpage.css">
+    <!-- FONTS USED -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <!-- icons -->
-    <!-- <link rel="stylesheet" href="font-awesome/css/all.min.css"> -->
 </head>
 
 <body>
-    <!-- Navigation Bar -->
+    <!-- NAVIGATION BAR -->
     <nav class="navigationBarContainer">
         <div class="logoContainer">
             <div id="logoImage"><a href="#"><img class="flexWorkspaceLogo" src="images/logos/FlexWorkspace-white.png"
                         alt="FlexWorkspace Logo"></a></div>
         </div>
         <div class="tabContainer">
-            <!-- <div class="aboutUsContainer">
-                <div id="aboutUsTab"><a href="#aboutFlexworkspace">About</a></div>
-            </div>
-            <div class="contactUsContainer"> 
-                <div id="contactUsTab">
-                    <a href="#footer">Contact Us</a>
-                </div>
-            </div> -->
             <div class="logOutContainer">
                 <button class="fill-btn">
                     <div class="btn-text">
@@ -42,7 +33,8 @@
             </div>
         </div>
     </nav>
-    <!-- Owner Page -->
+
+    <!-- OWNER SECTION -->
     <section>
         <div id="owner">
             <div class="ownerHeading">
@@ -60,8 +52,7 @@
                     <div>
                         <button>
                             <div>
-                                <a href="#workspaces">View Workspaces</a>
-                                <!-- <i class="fa-solid fa-arrow-down" id="viewWorkspaceIcon"></i> -->
+                                <a href="#workspaceList">View Workspaces</a>
                             </div>
                         </button>
                     </div>
@@ -93,7 +84,8 @@
                     </div>
                 </div>
             </div>
-            <!-- Property Section -->
+
+            <!-- PROPERTY SECTION -->
             <div class="propertiesSection" id="propertiesSection">
                 <div id="addProperty" class="add-property-container">
                     <div id="addPropertyLeftDiv" class="add-property-left">
@@ -119,13 +111,15 @@
                         </p>
                     </div>
 
+
+                    <!-- PROPERTY FORM -->
                     <form id="propertyForm" class="add-property-form">
-                        <!-- Address -->
+                        <!-- PROPERTY - ADDRESS FIELD -->
                         <input type="text" id="address" name="address" placeholder="Address" required><br>
-                        <!-- Neighborhood -->
+                        <!-- PROPERTY FORM - NEIGHBORHOOD FIELD -->
                         <input type="text" id="neighborhood" name="neighborhood" placeholder="Neighborhood"
                             required><br>
-                        <!-- Square Feet -->
+                        <!-- PROPERTY FORM - SQUARE FEET BUTTONS -->
                         <!-- <label for="squareFeet" id="squareFeetLabel">Square Feet:</label> -->
                         <div id="selectedSquareFeet">Square Feet:</div>
                         <div id="squareFeetButtons">
@@ -135,34 +129,96 @@
                             <button type="button" onclick="setSquareFeet(250)" id="squareFeetBtn">250 sq ft</button>
                         </div>
                         <input type="hidden" id="squareFeet" name="squareFeet">
-                        <!-- Parking Garage -->
+                        <!-- PROPERTY FORM - PARKING GARAGE CHECKBOX -->
                         <div id="parking">
                             <label for="parkingGarage" id="parkingLabel">Parking Garage Included:</label>
                             <input type="checkbox" id="parkingGarage" name="parkingGarage"><br>
                         </div>
                         <div id="transportation">
-                            <!-- Nearby Transportation -->
+                            <!-- PROPERTY FORM - NEARBY PUBLIC TRANSPORTATION CHECKBOX -->
                             <label for="publicTranspo" id="transpoLabel">Near Public Transportation:</label>
                             <input type="checkbox" id="publicTranspo" name="publicTranspo"><br>
                         </div>
+                        <!-- PROPERTY FORM - ADD PROPERTY BUTTON -->
                         <button type="button" onclick="validateAndAddProperty()" id="addPropertyButton">Add
                             Property</button>
                     </form>
                 </div>
-
             </div>
-            <!-- List of Added Properties -->
-            <div class="propertyListContainer">
-                <h1 id="listingDetails">Property Listing Details</h1>
-                <div class="propertyListContainer1">
-                    <div id="propertyList">
-                        <!-- <p>Your Listing Details</p> -->
 
+            <!-- ADDED PROPERTIES WILL BE DISPLAYED HERE -->
+            <div class="propertyListContainer">
+                <p id="propertyListingDetails">Property Listing Details</p>
+
+                <!-- SORTING PROPERTIES SECTION -->
+                <div class="sortPropertyContainer" id="sortPropertyContainer">
+
+                    <!-- LEFT SIDE -->
+                    <div id="sortPropertyLeftDiv">
+                        <!-- SORTY PROPERTY LIST - USING ADDRESS AND NEIGHBORHOOD -->
+                        <div id="sortAddressAndNeighborhoodLabel">
+                            <label for="sortAddressAndNeighborhoodLabel" id="sortAddressAndNeighborhoodLabel">Sort
+                                By:</label>
+                            <select id="sortAddressAndNeighborhood">
+                                <option value="" selected disabled hidden>Select order...</option>
+                                <option value="addressAscending">Address (Ascending)</option>
+                                <option value="addressDescending">Address (Descending)</option>
+                                <option value="neighborhoodAscending">Neighborhood (Ascending)</option>
+                                <option value="neighborhoodDescending">Neighborhood (Descending)</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <!-- SORTY PROPERTY LIST - WITH OR WITHOUT PARKING BUTTONS -->
+                        <div id="sortParkingIncludedLabel">
+                            <label for="sortParkingIncludedLabel" id="sortParkingIncludedLabel">Parking Garage
+                                Included:</label>
+                            <button id="filterParkingGarageIncludedBtn">Yes</button>
+                            <button id="filterParkingGarageNotIncludedBtn">No</button>
+                        </div>
+                        <br>
                     </div>
+
+                    <!-- RIGHT SIDE -->
+                    <div id="sortPropertyRightDiv">
+                        <!-- SORTY PROPERTY LIST - USING SQUARE FEET BUTTONS -->
+                        <div id="sortSquareFeetLabel">
+                            <label for="sortSquareFeetLabel" id="sortSquareFeetLabel">Sort By Square Feet:</label>
+                            <select id="sortSquareFeet">
+                                <option value="" selected disabled hidden>Select order...</option>
+                                <option value="asc">Ascending</option>
+                                <option value="desc">Descending</option>
+                            </select>
+                        </div>
+                        <br>
+
+                        <!-- SORT PROPERTY LIST - IF NEARBY PUBLIC TRANSPORTATION BUTTONS -->
+                        <div>
+                            <label for="sortNearPublicTranspoLabel" id="sortNearPublicTranspoLabel">Nearby Public
+                                Transportation:</label>
+                            <button id="filterPublicTranspoIncludedBtn">Yes</button>
+                            <button id="filterPublicTranspoNotIncludedBtn">No</button>
+                        </div>
+                        <br>
+
+                        <!-- SORT PROPERTY LIST - CLEAR FILTER -->
+                        <div id="clearPropertySorting">
+                            <label for="clearPropertySortingLabel" id="clearPropertySortingLabel"></label>
+                            <button id="clearPropertySortingBtn">Clear Sorting</button>
+                        </div>
+                        <br>
+                    </div>
+
                 </div>
 
+                <!-- DISPLAY ADDED PROPERTIES -->
+                <div class="propertyListContainer1">
+                    <div id="propertyList">
+                    </div>
+                </div>
             </div>
-            <!-- Workspace Section -->
+
+            <!-- WORKSPACE SECTION -->
             <div class="workspaceSection" id="workspaces">
                 <div id="addWorkspace" class="add-workspace-container">
                     <div id="addWorkspaceLeftDiv" class="add-property-left">
@@ -185,13 +241,14 @@
                             and professionals.
                         </p>
                     </div>
+
+                    <!-- WORKSPACE FORM -->
                     <form id="workspaceForm" class="add-workspace-form">
-                        <!-- Property Name -->
+                        <!-- WORKSPACE FORM - DISPLAY PROPERTY NAME -->
                         <label for="propertyName" id="propertyNameLabel">Property Name:</label>
                         <select id="propertyName" name="propertyName">
-                            <!-- Options will be populated dynamically -->
                         </select><br>
-                        <!-- Workspace Type -->
+                        <!-- WORKSPACE FORM - WORKSPACE TYPE DROPDOWN -->
                         <label for="workspaceType" id="workspaceTypeLabel">Workspace Type:</label>
                         <select id="workspaceType" name="workspaceType" required>
                             <option value=""></option>
@@ -199,7 +256,7 @@
                             <option value="office area">Office Area</option>
                             <option value="desk in open area">Desk in Open Area</option>
                         </select><br>
-                        <!-- Capacity -->
+                        <!-- WORKSPACE FORM - CAPACITY BUTTONS -->
                         <div id="selectedCapacity"><span style="font-weight: bold;">Capacity: </span>
                             <span id="capacityText"></span>
                         </div>
@@ -210,20 +267,12 @@
                             <button type="button" onclick="setCapacity(15)" id="capacityBtn">15</button>
                         </div>
                         <input type="hidden" id="capacity" name="capacity">
-                        <!-- Smoking -->
+                        <!-- WORKSPACE FORM - SMOKING ALLOWED CHECKBOX -->
                         <div id="smokingAllowedLabel">
-                            <label for="smokingAllowed" >Smoking Allowed:</label>
+                            <label for="smokingAllowed">Smoking Allowed:</label>
                             <input type="checkbox" id="smokingAllowed" name="smokingAllowed"><br>
                         </div>
-                        
-                        <!-- Lease Term -->
-                        <!-- <div id="selectedLeaseTerm"><span style="font-weight: bold;">Lease Term:</span><span id="leaseTermText"></span></div>
-                        <div id="leaseTermButtons">
-                            <button type="button" onclick="setLeaseTerm('day')" id="leaseTermBtn">Day</button>
-                            <button type="button" onclick="setLeaseTerm('week')" id="leaseTermBtn">Week</button>
-                            <button type="button" onclick="setLeaseTerm('month')" id="leaseTermBtn">Month</button>
-                        </div> -->
-
+                        <!-- WORKSPACE FORM - LEASE TERM BUTTONS -->
                         <div id="selectedLeaseTerm">
                             <span style="font-weight: bold;">Lease Term:</span>
                             <span id="leaseTermText"></span>
@@ -233,38 +282,49 @@
                             <button type="button" onclick="setLeaseTerm('week')" id="leaseTermBtn">Week</button>
                             <button type="button" onclick="setLeaseTerm('month')" id="leaseTermBtn">Month</button>
                         </div>
-
-
                         <input type="hidden" id="leaseTerm" name="leaseTerm">
-                        <!-- Availability Date -->
+                        <!-- WORKSPACE FORM - AVAILABILITY START DATE AND AVAILABILITY END DATE -->
                         <label for="availabilityStartDate" id="availabilityStartDateLabel">Availability Start
                             Date:</label>
                         <input type="date" id="availabilityStartDate" name="availabilityStartDate" required><br>
                         <label for="availabilityEndDate" id="availabilityEndDateLabel">Availability End Date:</label>
                         <input type="date" id="availabilityEndDate" name="availabilityEndDate" required><br>
                         <!-- Price -->
-                        <input type="number" id="price" name="price" placeholder="Enter desired price here..." required><br>
-
+                        <input type="number" id="price" name="price" placeholder="Enter desired price here..."
+                            required><br>
+                        <!-- WORKSPACE FORM - ADD WORKSPACE BUTTON -->
                         <button type="button" onclick="validateAndAddWorkspace()" id="addWorkspaceButton">Add
                             Workspace</button>
                     </form>
                 </div>
             </div>
-
-            <!-- List of Added Workspaces -->
+            <!-- WORKSPACE TYPE, CAPACITY, SMOKING ALLOWED, LEASE TERM, DATES, PRICE RANGE -->
+            <!-- ADDED WORKSPACES WILL BE DISPLAYED HERE -->
             <div class="workspaceListContainer">
-                <h1 id="listingDetails">Workspace Listing Details</h1>
+                <p id="workspaceListingDetails">Workspace Listing Details</p>
+                <!-- SORTING WORKSPACES SECTION -->
+                <div class="sortWorkspaceContainer" id="sortWorkspaceContainer">
+
+                    <div class="workspaceTypeFilterLabel">
+                        <label id="workspaceTypeFilterLabel">Sort By:</label>
+                        <select id="workspaceTypeFilter">
+                            <option value="">All Types</option>
+                            <option value="meeting room">Meeting Room</option>
+                            <option value="office area">Office Area</option>
+                            <option value="desk in open area">Desk in Open Area</option>
+                        </select>
+                    </div>
+
+                </div>
+
                 <div class="workspaceListContainer1">
                     <div id="workspaceList">
-                        <!-- <p>Your Listing Details</p> -->
-
                     </div>
                 </div>
 
             </div>
 
-
-            <!-- Modal for editing property -->
+            <!-- POP UP MODAL - EDIT PROPERTY -->
             <div id="propertyEditModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -274,11 +334,8 @@
                     <input type="text" id="editAddress" required><br>
                     <label for="editNeighborhood" id="editPropertyNeighborhoodLabel">Neighborhood:</label>
                     <input type="text" id="editNeighborhood" required><br>
-                    <!-- <label for="editSquareFeet">Square Feet:</label> -->
-
                     <label for="editSquareFeet" id="editPropertySquareFeetLabel">Square Feet:
                     </label>
-
                     <input type="text" id="editSquareFeet" required><span id="sqft">sq ft</span>
                     <br>
                     <div id="editSquareFeetButtons">
@@ -287,28 +344,24 @@
                         <button type="button" onclick="setEditSquareFeet(200)" id="squareFeetBtn">200 sq ft</button>
                         <button type="button" onclick="setEditSquareFeet(250)" id="squareFeetBtn">250 sq ft</button>
                     </div>
-                    <!-- Parking Garage Checkbox -->
                     <label for="editParkingGarage" id="editPropertyParkingLabel">Parking Garage:</label>
                     <input type="checkbox" id="editParkingGarage"><br><br>
-                    <!-- Nearby Transportation -->
                     <label for="editPublicTranspo" id="editPropertyPublicTranspoLabel">Near Public
                         Transportation:</label>
                     <input type="checkbox" id="editPublicTranspo"><br><br><br><br><br>
+                    <!-- POP UP MODAL - SAVE CHANGES IN PROPERTY -->
                     <button id="savePropertyChangesBtn">Save Changes</button>
                 </div>
             </div>
 
-            <!-- Modal for editing workspace -->
+            <!-- POP UP MODAL - EDIT WORKSPACE -->
             <div id="workspaceEditModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2>Edit Workspace</h2>
                     <br><br><br>
-                    <!-- Property Name - display only -->
                     <label for="editPropertyName" id="propertyNameLabel">Property Name:</label>
                     <input type="text" id="editPropertyName" disabled><br>
-
-                    <!-- Workspace Type -->
                     <div id="editWorkspaceTypeLabel">
                         <label for="editWorkspaceTypeLabel">Workspace Type:</label>
                         <select id="editWorkspaceType" name="workspaceType" required>
@@ -318,19 +371,8 @@
                             <option value="desk in open area">Desk in Open Area</option>
                         </select>
                     </div>
-
-                    <!-- Capacity -->
-                    <!-- <div id="editSelectedCapacity"><span style="font-weight: bold;">Capacity:</span></div>
-                    <div id="capacityButtons">
-                        <button type="button" onclick="editSetCapacity(1)" id="capacityBtn">1</button>
-                        <button type="button" onclick="editSetCapacity(5)" id="capacityBtn">5</button>
-                        <button type="button" onclick="editSetCapacity(10)" id="capacityBtn">10</button>
-                        <button type="button" onclick="editSetCapacity(15)" id="capacityBtn">15</button>
-                    </div>
-                    <input type="hidden" id="editCapacity" name="capacity" required> -->
-
-                    <div id="editSelectedCapacity"><span style="font-weight: bold;" id="editCapacityLabel">Capacity: </span><span
-                            id="editCapacityText"></span></div>
+                    <div id="editSelectedCapacity"><span style="font-weight: bold;" id="editCapacityLabel">Capacity:
+                        </span><span id="editCapacityText"></span></div>
                     <div id="editCapacityButtons">
                         <button type="button" onclick="editSetCapacity(1)" id="editCapacityBtn">1</button>
                         <button type="button" onclick="editSetCapacity(5)" id="editCapacityBtn">5</button>
@@ -338,16 +380,10 @@
                         <button type="button" onclick="editSetCapacity(15)" id="editCapacityBtn">15</button>
                     </div>
                     <input type="hidden" id="editCapacity" name="capacity" required>
-
-
-                    <!-- Smoking Allowed Checkbox -->
                     <div id="editSmokingAllowedLabel">
                         <label for="editSmokingAllowed">Smoking Allowed:</label>
                         <input type="checkbox" id="editSmokingAllowed"><br><br>
                     </div>
-                    
-
-                    <!-- Lease Term -->
                     <div id="editSelectedLeaseTerm">
                         <span style="font-weight: bold;" id="editLeaseTermLabel">Lease Term:</span>
                         <span id="editLeaseTermText"></span>
@@ -358,26 +394,19 @@
                         <button type="button" onclick="editSetLeaseTerm('month')" id="leaseTermBtn">Month</button>
                     </div>
                     <input type="hidden" id="editLeaseTerm" name="leaseTerm" required>
-
-
-                
-
-                    <!-- Availability Date -->
                     <label for="availabilityStartDate" id="editAvailabilityStartDateLabel">Availability Start
                         Date:</label>
                     <input type="date" id="editAvailabilityStartDate" name="availabilityStartDate" required><br>
                     <label for="availabilityEndDate" id="editAvailabilityEndDateLabel">Availability End Date:</label>
                     <input type="date" id="editAvailabilityEndDate" name="availabilityEndDate" required><br>
-                    <!-- Price -->
-
                     <label for="editPrice" id="priceLabel">Price:</label>
                     <input type="number" id="editPrice" required><br><br><br><br><br>
-
+                    <!-- POP UP MODAL - SAVE CHANGES IN WORKSPACE -->
                     <button id="saveWorkspaceChangesBtn">Save Changes</button>
                 </div>
             </div>
 
-            <!-- Modal for displaying validation message -->
+            <!-- POP UP MODAL - VALIDATION MESSAGE -->
             <div id="validationModal" class="modal">
                 <div class="modal-content">
                     <!-- <span class="close">&times;</span> -->
@@ -386,50 +415,34 @@
                 </div>
             </div>
 
-
-            <!-- Modal for adding workspace without property -->
+            <!-- POP UP MODAL - PROPERTY VALIDATION MESSAGE -->
             <div id="selectPropertyMessage" class="modal">
                 <div class="modal-content">
-                    <!-- <span class="close">&times;</span> -->
                     <h2>Please select a property.</h2>
                     <br><br>
                     <button id="selectPropertyCloseBtn">Close</button>
                 </div>
             </div>
 
-            <!-- Modal for displaying validation message -->
-            <!-- <div id="leaseValidationModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Kindly make sure Start and End Dates are properly selected.</h2>
-                    <button id="closeValidationBtn">Close</button>
-                </div>
-            </div> -->
-
-            <!-- Modal for successful property listing -->
+            <!-- POP UP MODAL - SUCCESSFUL ADDING OF PROPERTY -->
             <div id="successfulListing" class="modal">
                 <div class="modal-content">
-                    <!-- <span class="close">&times;</span> -->
                     <h2>Congratulations! Your property has been successfully listed.</h2>
-                    <button id="closeSuccessAddedPropertyBtn">Close</button> <!-- Changed ID to closeSuccessBtn -->
+                    <button id="closeSuccessAddedPropertyBtn">Close</button>
                 </div>
             </div>
 
-            <!-- Modal for successful workspace listing -->
+            <!-- POP UP MODAL - SUCCESSFUL ADDING OF WORKSPACE -->
             <div id="successfulWorkspaceListing" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                     <h2>Congratulations! You have successfully added a workspace.</h2>
-                    <button id="closeSuccessWorkspaceAddedBtn">Close</button> <!-- Changed ID to closeSuccessBtn -->
+                    <button id="closeSuccessWorkspaceAddedBtn">Close</button>
                 </div>
             </div>
         </div>
-        <!-- </section> -->
-        <!-- Coworker Page -->
-        <!-- <section id="CoworkerOnly" style="display: none;"> -->
 
-        <!-- </section> -->
-        <!-- Footer Section -->
+        <!-- FOOTER SECTION -->
         <footer id="footer">
             <img id="footerImage" src="images/footer/Footer Image(Persist and Proceed).png">
             <div id="socialLogos">
@@ -439,8 +452,8 @@
                 <img id="youtube" src="images/footer/youtube.png">
             </div>
         </footer>
-        <!-- script -->
-        <script src="javascript/script-features.js"></script>
+        <!-- SCRIPT -->
+        <script src="javascript/script-owner.js"></script>
         <script src="https://kit.fontawesome.com/e2ac5a529b.js" crossorigin="anonymous"></script>
 </body>
 

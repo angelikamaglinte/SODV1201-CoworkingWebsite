@@ -1,70 +1,38 @@
+// OWNER PAGE JAVASCRIPT FILE
+
+
+// ARRAY TO STORE PROPERTIES AND WORKSPACES OBJECTS 
 let properties = [];
 let workspaces = [];
 
 
+// FUNCTION WHEN PAGES LOADS
 window.onload = function () {
-  // Load properties and workspaces from local storage when the page loads
   if (localStorage.getItem('properties')) {
     properties = JSON.parse(localStorage.getItem('properties'));
   }
   if (localStorage.getItem('workspaces')) {
     workspaces = JSON.parse(localStorage.getItem('workspaces'));
   }
-  displayProperties(); // Call displayProperties function after loading properties
-
+  displayProperties(); 
+  displayWorkspaces();
+  populatePropertyDropdown(); 
   const storedSearchQuery = localStorage.getItem('searchQuery');
   if (storedSearchQuery) {
     document.getElementById('workspaceSearch').value = storedSearchQuery;
-    searchWorkspaces(); // Apply the search filter
+    searchWorkspaces(); 
   }
 };
 
-// Function to set Square Feet in Property Form only 
+
+// FUNCTION TO SET SQUARE FEET VALUE IN PROPERTY FORM
 function setSquareFeet(value) {
   document.getElementById('squareFeet').value = value;
   document.getElementById('selectedSquareFeet').innerText = `Square Feet: ${value} sq ft`;
 }
 
-// Validate and Add Property Function
-// function validateAndAddProperty() {
-//   const address = document.getElementById('address').value;
-//   const neighborhood = document.getElementById('neighborhood').value;
-//   const squareFeet = document.getElementById('squareFeet').value;
-//   const parkingGarage = document.getElementById('parkingGarage').checked;
-//   const publicTranspo = document.getElementById('publicTranspo').checked;
 
-//   // Validate inputs
-//   if (!address || !neighborhood || !squareFeet) {
-//     const validationModal = document.getElementById('validationModal');
-//     validationModal.style.display = 'block';
-//     document.getElementById('closeValidationBtn').onclick = function () {
-//       validationModal.style.display = 'none';
-//     };
-//     return;
-//   }
-
-//   else {
-//     const successfulListing = document.getElementById('successfulListing');
-//     successfulListing.style.display = 'block';
-//     document.getElementById('closeSuccessAddedPropertyBtn').onclick = function () { // Changed to closeSuccessBtn
-//       successfulListing.style.display = 'none';
-//     };
-//   }
-
-//   const property = {
-//     address,
-//     neighborhood,
-//     squareFeet,
-//     parkingGarage,
-//     publicTranspo
-//   };
-
-//   properties.push(property);
-//   savePropertiesToLocalStorage();
-//   displayProperties();
-// }
-
-// Validate and Add Property Function
+// FUNCTION TO VALIDATE AND ADD PROPERTY
 function validateAndAddProperty() {
   const addressInput = document.getElementById('address');
   const neighborhoodInput = document.getElementById('neighborhood');
@@ -72,14 +40,13 @@ function validateAndAddProperty() {
   const parkingGarageInput = document.getElementById('parkingGarage');
   const publicTranspoInput = document.getElementById('publicTranspo');
 
-  // Get input values
   const address = addressInput.value;
   const neighborhood = neighborhoodInput.value;
   const squareFeet = squareFeetInput.value;
   const parkingGarage = parkingGarageInput.checked;
   const publicTranspo = publicTranspoInput.checked;
 
-  // Validate inputs
+  // CONDITION: IF ADDRESS, NEIGHBORHOOD, SQUARE FEET ARE EMPTY, SHOW VALIDATION MESSAGE
   if (!address || !neighborhood || !squareFeet) {
     const validationModal = document.getElementById('validationModal');
     validationModal.style.display = 'block';
@@ -89,7 +56,6 @@ function validateAndAddProperty() {
     return;
   }
 
-  // Add property
   const property = {
     address,
     neighborhood,
@@ -102,14 +68,14 @@ function validateAndAddProperty() {
   savePropertiesToLocalStorage();
   displayProperties();
 
-  // Clear input fields
+  // CONDITION: CLEAR INPUT FIELDS UPON ADDING A PROPERTY
   addressInput.value = '';
   neighborhoodInput.value = '';
   squareFeetInput.value = '';
   parkingGarageInput.checked = false;
   publicTranspoInput.checked = false;
 
-  // Show success message
+  // CONDITION: DISPLAY SUCCESS MESSAGE WHEN PROPERTY IS SUCCESSFULLY ADDED
   const successfulListing = document.getElementById('successfulListing');
   successfulListing.style.display = 'block';
   document.getElementById('closeSuccessAddedPropertyBtn').onclick = function () {
@@ -118,90 +84,200 @@ function validateAndAddProperty() {
 }
 
 
-// Display Properties Function
-function displayProperties() {
-  const propertyList = document.getElementById('propertyList');
-  propertyList.innerHTML = '';
+// SORTING PROPERTIES
+// FUNCTION TO SORT PROPERTIES BY ADDRESS AND NEIGHBORHOOD
+// document.getElementById('sortAddressAndNeighborhood').addEventListener('change', sortPropertiesByAddressAndNeighborhood)
+// Call the sorting function based on the selected option
+document.getElementById('sortAddressAndNeighborhood').addEventListener('change', function() {
+  const sortBy = this.value;
+  if (sortBy === 'addressAscending') {
+      sortPropertiesByAddressAsc();
+  } else if (sortBy === 'addressDescending') {
+      sortPropertiesByAddressDesc();
+  } else if (sortBy === 'neighborhoodAscending') {
+      sortPropertiesByNeighborhoodAsc();
+  } else if (sortBy === 'neighborhoodDescending') {
+      sortPropertiesByNeighborhoodDesc();
+  }
+  
+  // After sorting, display the properties
+  displayProperties();
+});
 
-  const propertyNameDropdown = document.getElementById('propertyName');
-  propertyNameDropdown.innerHTML = ''; // Clear existing options
+// Function to sort properties by address in ascending order
+function sortPropertiesByAddressAsc() {
+  properties.sort((a, b) => a.address.localeCompare(b.address));
+}
 
-  properties.forEach((property, index) => {
-    const propertyDiv = document.createElement('div');
-    propertyDiv.classList.add('property');
+// Function to sort properties by address in descending order
+function sortPropertiesByAddressDesc() {
+  properties.sort((a, b) => b.address.localeCompare(a.address));
+}
 
-    const propertyInfo = `
-            <p><strong>Address:</strong> ${property.address}</p>
-            <p><strong>Neighborhood:</strong> ${property.neighborhood}</p>
-            <p><strong>Square Feet:</strong> ${property.squareFeet}</p>
-            <p><strong>Parking Garage:</strong> ${property.parkingGarage ? 'Yes' : 'No'}</p>
-            <p><strong>Near Public Transportation:</strong> ${property.publicTranspo ? 'Yes' : 'No'}</p>
-          `;
+// Function to sort properties by neighborhood in ascending order
+function sortPropertiesByNeighborhoodAsc() {
+  properties.sort((a, b) => a.neighborhood.localeCompare(b.neighborhood));
+}
 
-    // Create option for dropdown list
-    const option = document.createElement('option');
-    option.text = property.address;
-    option.value = index; // Store index as value for later reference
-    propertyNameDropdown.add(option);
-
-    const updateButton = document.createElement('button');
-    updateButton.textContent = 'Update Property';
-    updateButton.onclick = () => openPropertyEditModal(index);
-
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete Property';
-    deleteButton.onclick = () => deleteProperty(index);
-
-    propertyDiv.innerHTML = propertyInfo;
-    propertyDiv.appendChild(updateButton);
-    propertyDiv.appendChild(deleteButton);
-    propertyList.appendChild(propertyDiv);
-  });
-
-  displayWorkspaces(); // Call displayWorkspaces function after loading workspaces
+// Function to sort properties by neighborhood in descending order
+function sortPropertiesByNeighborhoodDesc() {
+  properties.sort((a, b) => b.neighborhood.localeCompare(a.neighborhood));
 }
 
 
-// Edit Property Pop Up Modal Function
-// function openPropertyEditModal(index) {
-//   const property = properties[index];
-//   document.getElementById('editAddress').value = property.address;
-//   document.getElementById('editNeighborhood').value = property.neighborhood;
-//   document.getElementById('editSquareFeet').value = property.squareFeet; // Set selected square feet using the value property
 
 
-//   // Set the selected square feet value in the pop-up modal
-//   const selectedSquareFeet = property.squareFeet;
-//   document.getElementById('editSquareFeet').innerText = selectedSquareFeet;
+// FUNCTION TO SORT PROPERTIES BY ADDRESS AND NEIGHBORHOOD IN ASCENDING OR DESCENDING ORDER
+function sortPropertiesBy(key, order) {
+  properties.sort((a, b) => {
+      if (order === 'asc') {
+          return a[key].localeCompare(b[key]);
+      } else {
+          return b[key].localeCompare(a[key]);
+      }
+  });
 
-//   const modal = document.getElementById('propertyEditModal');
-//   modal.style.display = 'block';
-
-//   document.getElementById('savePropertyChangesBtn').onclick = function () {
-//     savePropertyChanges(index);
-//     modal.style.display = 'none';
-//   };
-
-//   const span = document.getElementsByClassName('close')[0];
-//   span.onclick = function () {
-//     modal.style.display = 'none';
-//   };
-
-//   window.onclick = function (event) {
-//     if (event.target == modal) {
-//       modal.style.display = 'none';
-//     }
-//   };
-// }
+  console.log('Properties after sorting:', properties);
+  // CALL DISPLAY PROPERTIES AFTER SORTING
+  displayProperties();
+}
 
 
+// FUNCTION TO SORT PROPERTIES BY PARKING GARAGE STATUS
+function filterPropertiesByParkingGarage(included) {
+  // Filter properties based on the parking garage status
+  const filteredProperties = properties.filter(property => property.parkingGarage === included);
+
+  // CALL DISPLAY PROPERTIES AFTER SORTING
+  displayProperties(filteredProperties);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const includedBtn = document.getElementById('filterParkingGarageIncludedBtn');
+  const notIncludedBtn = document.getElementById('filterParkingGarageNotIncludedBtn');
+
+  if (includedBtn && notIncludedBtn) {
+    includedBtn.addEventListener('click', () => filterPropertiesByParkingGarage(true));
+    notIncludedBtn.addEventListener('click', () => filterPropertiesByParkingGarage(false));
+  } else {
+    console.error("Button IDs not found.");
+  }
+});
+
+
+// FUNCTION TO SORT PROPERTIES BY SQUARE FEET 
+document.getElementById('sortSquareFeet').addEventListener('change', sortPropertiesBySquareFeet);
+
+function sortPropertiesBySquareFeet() {
+  const sortBy = document.getElementById('sortSquareFeet').value;
+
+  switch (sortBy) {
+    case 'asc':
+      sortPropertiesBy('squareFeet', 'asc');
+      break;
+    case 'desc':
+      sortPropertiesBy('squareFeet', 'desc');
+      break;
+    default:
+      // DO NOTHING IF NO VALID OPTION IS SELECTED
+      break;
+  }
+}
+
+
+// FUNCTION TO SORT PROPERTIES BY SQUARE FEET IN ASCENDING OR DESCENDING ORDER
+function sortPropertiesBy(key, order) {
+  properties.sort((a, b) => {
+    const aValue = parseInt(a[key]);
+    const bValue = parseInt(b[key]);
+    if (order === 'asc') {
+      return aValue - bValue;
+    } else {
+      return bValue - aValue;
+    }
+  });
+
+  // CALL DISPLAY PROPERTIES AFTER SORTING
+  displayProperties();
+}
+
+
+// FUNCTION TO SORT PROPERTIES BY NEARBY PUBLIC TRANSPORTATION STATUS
+function filterPropertiesByPublicTranspo(included) {
+  const filteredProperties = properties.filter(property => property.publicTranspo === included);
+
+  // CALL DISPLAY PROPERTIES AFTER SORTING
+  displayProperties(filteredProperties);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const includedBtn = document.getElementById('filterPublicTranspoIncludedBtn');
+  const notIncludedBtn = document.getElementById('filterPublicTranspoNotIncludedBtn');
+
+  if (includedBtn && notIncludedBtn) {
+    includedBtn.addEventListener('click', () => filterPropertiesByPublicTranspo(true));
+    notIncludedBtn.addEventListener('click', () => filterPropertiesByPublicTranspo(false));
+  } else {
+    console.error("Button IDs not found.");
+  }
+});
+
+
+// FUNCTION TO CLEAR SORT PROPERTIES
+document.getElementById('clearPropertySortingBtn').addEventListener('click', function() {
+  
+  // CALL DISPLAY PROPERTIES AFTER SORTING
+  displayProperties(properties);
+});
+
+
+// FUNCTION TO DISPLAY PROPERTIES
+// Display Properties Function
+function displayProperties(propertiesArray = properties) {
+  const propertyList = document.getElementById('propertyList');
+  propertyList.innerHTML = '';
+
+  // Render properties based on the provided or default properties array
+  propertiesArray.forEach((property, index) => {
+      // Create HTML elements to display property information
+      const propertyDiv = document.createElement('div');
+      propertyDiv.classList.add('property');
+
+      const propertyInfo = `
+          <p><strong>Address:</strong> ${property.address}</p>
+          <p><strong>Neighborhood:</strong> ${property.neighborhood}</p>
+          <p><strong>Square Feet:</strong> ${property.squareFeet}</p>
+          <p><strong>Parking Garage:</strong> ${property.parkingGarage ? 'Yes' : 'No'}</p>
+          <p><strong>Near Public Transportation:</strong> ${property.publicTranspo ? 'Yes' : 'No'}</p>
+      `;
+
+      // Create update and delete buttons
+      const updateButton = document.createElement('button');
+      updateButton.textContent = 'Update Property';
+      updateButton.onclick = () => openPropertyEditModal(index);
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete Property';
+      deleteButton.onclick = () => deleteProperty(index);
+
+      // Append property information and buttons to the property div
+      propertyDiv.innerHTML = propertyInfo;
+      propertyDiv.appendChild(updateButton);
+      propertyDiv.appendChild(deleteButton);
+
+      propertyList.appendChild(propertyDiv);
+  });
+}
+
+
+
+// FUNCTION TO OPEN POP UP MODAL TO EDIT PROPERTY
 function openPropertyEditModal(index) {
   const property = properties[index];
   document.getElementById('editAddress').value = property.address;
   document.getElementById('editNeighborhood').value = property.neighborhood;
-  document.getElementById('editSquareFeet').value = property.squareFeet; // Set selected square feet using the value property
+  document.getElementById('editSquareFeet').value = property.squareFeet; 
 
-  // Set the selected square feet value in the pop-up modal
   const selectedSquareFeet = property.squareFeet;
   document.getElementById('editSquareFeet').innerText = selectedSquareFeet;
 
@@ -228,6 +304,8 @@ function openPropertyEditModal(index) {
   };
 }
 
+
+// FUNCTION TO VALIDATE PROPERTY CHANGES
 function validatePropertyChanges() {
   const address = document.getElementById('editAddress').value;
   const neighborhood = document.getElementById('editNeighborhood').value;
@@ -240,12 +318,11 @@ function validatePropertyChanges() {
 }
 
 
-
-// Save Changes in Edit Property Modal Function
+// FUNCTION TO SAVE CHANGES IN PROPERTY
 function savePropertyChanges(index) {
   const updatedAddress = document.getElementById('editAddress').value;
   const updatedNeighborhood = document.getElementById('editNeighborhood').value;
-  const updatedSquareFeet = document.getElementById('editSquareFeet').value; // Get selected square feet using the value property
+  const updatedSquareFeet = document.getElementById('editSquareFeet').value; 
 
   const updatedParkingGarage = document.getElementById('editParkingGarage').checked;
   const updatedPublicTranspo = document.getElementById('editPublicTranspo').checked;
@@ -258,26 +335,26 @@ function savePropertyChanges(index) {
     publicTranspo: updatedPublicTranspo
   };
 
-  savePropertiesToLocalStorage(); // Save changes to local storage
-  displayProperties(); // Update the displayed properties
+  savePropertiesToLocalStorage(); 
+  displayProperties(); 
 }
 
-// Delete Property Function
+
+// FUNCTION TO DELETE A PROPERTY
 function deleteProperty(index) {
   properties.splice(index, 1);
   savePropertiesToLocalStorage();
   displayProperties();
 }
 
+
+// FUNCTION TO SET SQUARE FEET VALUE IN POP UP MODAL
 function setEditSquareFeet(value) {
   document.getElementById('editSquareFeet').value = value;
 }
 
-// function setCapacity(value) {
-//   document.getElementById('capacity').value = value;
-//   document.getElementById('selectedCapacity').innerText = `Capacity: ${value} person/s`;
-// }
 
+// FUNCTION TO SET CAPACITY VALUE IN WORKSPACE FORM
 function setCapacity(value) {
   document.getElementById('capacity').value = value;
   const editCapacityText = document.getElementById('capacityText');
@@ -285,11 +362,7 @@ function setCapacity(value) {
 }
 
 
-// function editSetCapacity(value) {
-//   document.getElementById('editCapacity').value = value;
-//   document.getElementById('editSelectedCapacity').innerText = `Capacity: ${value} person/s`;
-// }
-
+// FUNCTION TO SET CAPACITY VALUE IN WORKSPACE POP UP MODAL
 function editSetCapacity(value) {
   document.getElementById('editCapacity').value = value;
   const editCapacityText = document.getElementById('editCapacityText');
@@ -297,25 +370,15 @@ function editSetCapacity(value) {
 }
 
 
-
-// function setLeaseTerm(value) {
-//   document.getElementById('leaseTerm').value = value;
-//   document.getElementById('selectedLeaseTerm').innerText = `Lease Term: ${value}`;
-// }
-
+// FUNCTION TO SET LEASE TERM VALUE IN WORKSPACE FORM
 function setLeaseTerm(value) {
   document.getElementById('leaseTerm').value = value;
   const leaseTermText = document.getElementById('leaseTermText');
   leaseTermText.innerText = value;
 }
-// 
 
-// Edit Lease Term in Workspace 
-// function editSetLeaseTerm(value) {
-//   document.getElementById('editLeaseTerm').value = value;
-//   document.getElementById('editSelectedLeaseTerm').innerText = `Lease Term: ${value}`;
-// }
 
+// FUNCTION TO SET LEASE TERM VALUE IN WORKSPACE POP UP MODAL
 function editSetLeaseTerm(value) {
   document.getElementById('editLeaseTerm').value = value;
   const leaseTermText = document.getElementById('editLeaseTermText');
@@ -323,18 +386,27 @@ function editSetLeaseTerm(value) {
 }
 
 
-// function setEditCapacity(value) {
-//   document.getElementById('editCapacity').value = value;
-//   document.getElementById('editSelectedCapacity').innerText = `Capacity: ${value} person/s`;
-// }
+// FUNCTION TO POPULATE PROPERTY DROPDOWN BUTTON IN WORKSPACE FORM
+function populatePropertyDropdown() {
+  const propertyDropdown = document.getElementById('propertyName');
+  propertyDropdown.innerHTML = ''; 
 
+  properties.forEach((property, index) => {
+    const option = document.createElement('option');
+    option.value = index; 
+    option.textContent = property.address; 
+    propertyDropdown.appendChild(option); 
+  });
+}
+
+
+// FUNCTION TO VALIDATE AND ADD WORKSPACE
 function validateAndAddWorkspace() {
   const propertyNameIndex = document.getElementById('propertyName').value;
   const property = properties[propertyNameIndex];
 
-  // Validate inputs for workspace
+  // CONDITION: VALIDATE IF THERE'S A PROPERTY SELECTED
   if (!property) {
-    // alert('Please select a property.');
     const selectPropertyMessage = document.getElementById('selectPropertyMessage');
     selectPropertyMessage.style.display = 'block';
     document.getElementById('selectPropertyCloseBtn').onclick = function () {
@@ -342,8 +414,6 @@ function validateAndAddWorkspace() {
     };
     return;
   }
-
-  
 
   const workspaceType = document.getElementById('workspaceType').value;
   const capacity = document.getElementById('capacity').value;
@@ -353,7 +423,7 @@ function validateAndAddWorkspace() {
   const availabilityStartDate = document.getElementById('availabilityStartDate').value;
   const availabilityEndDate = document.getElementById('availabilityEndDate').value;
 
-  // Validate lease term and availability dates
+  // CONDITION: VALIDATE LEASE TERM
   let leaseTermAlertTriggered = false;
 
   switch (leaseTerm) {
@@ -389,7 +459,7 @@ function validateAndAddWorkspace() {
       break;
   }
 
-  // Validate all fields are filled out
+  // CONDITION: VALIDATE ALL FIELDS ARE FILLED OUT
   if (!workspaceType || !capacity || !leaseTerm || !price || !availabilityStartDate || !availabilityEndDate) {
     const validationModal = document.getElementById('validationModal');
     validationModal.style.display = 'block';
@@ -399,7 +469,7 @@ function validateAndAddWorkspace() {
     return;
   }
 
-  // If no alerts were triggered during lease term validation and all fields are filled out correctly
+  // CONDITION: IF NO ALERTS WERE TRIGGERED DURING LEASE TERM VALIDATION AND ALL FIELDS ARE FILLED OUT CORRECTLY
   if (!leaseTermAlertTriggered) {
     const successfulWorkspaceListing = document.getElementById('successfulWorkspaceListing');
     successfulWorkspaceListing.style.display = 'block';
@@ -407,7 +477,7 @@ function validateAndAddWorkspace() {
       successfulWorkspaceListing.style.display = 'none';
     };
   } else {
-    // If an alert was triggered during lease term validation
+    // CONDITION: IF AN ALERT WAS TRIGGERED DURING LEASE TERM VALIDATION
     const validationModal = document.getElementById('validationModal');
     validationModal.style.display = 'block';
     document.getElementById('closeValidationBtn').onclick = function () {
@@ -428,33 +498,33 @@ function validateAndAddWorkspace() {
     price
   };
 
-  // Add availability dates based on lease term
-  // switch (leaseTerm) {
-  //   case 'day':
-  //     workspace.availabilityDate = availabilityStartDate;
-  //     break;
-  //   case 'week':
-  //   case 'month':
-  //     workspace.availabilityStartDate = availabilityStartDate;
-  //     workspace.availabilityEndDate = availabilityEndDate;
-  //     break;
-  //   default:
-  //     break;
-  // }
-
   workspaces.push(workspace); // Add workspace to the list
   saveWorkspacesToLocalStorage();
   displayWorkspaces();
 }
 
 
+// SORTING WORKSPACES
+
+// Add event listener to the select dropdown for filtering
+document.getElementById('workspaceTypeFilter').addEventListener('change', function() {
+  const filterType = this.value; // Get the selected filter type
+  console.log("Filter Type: ", filterType); // Check the selected filter type
+  displayWorkspaces(workspaces, filterType); // Call displayWorkspaces with the selected filter type
+});
 
 
-function displayWorkspaces() {
+// FUNCTION TO DISPLAY WORKSPACES
+function displayWorkspaces(workspacesArray = workspaces, filterType = '') {
   const workspaceList = document.getElementById('workspaceList');
   workspaceList.innerHTML = '';
 
-  workspaces.forEach((workspace, index) => {
+  // Filter workspacesArray based on filterType
+  const filteredWorkspaces = filterType ? workspacesArray.filter(workspace => workspace.workspaceType === filterType) : workspacesArray;
+
+  console.log("Filtered Workspaces: ", filteredWorkspaces); // Log filtered workspaces
+
+  filteredWorkspaces.forEach((workspace, index) => {
     const propertyIndex = properties.findIndex(property => property.address === workspace.propertyName);
     let neighborhood = 'Neighborhood information not available'; // Default value if neighborhood is not found
 
@@ -464,14 +534,6 @@ function displayWorkspaces() {
 
     const workspaceDiv = document.createElement('div');
     workspaceDiv.classList.add('workspace');
-
-    // let availabilityInfo = '';
-    // if (workspace.leaseTerm === 'day') {
-    //   availabilityInfo = `<p><strong>Availability Date:</strong> ${workspace.availabilityDate}</p>`;
-    // } else if (workspace.leaseTerm === 'week' || workspace.leaseTerm === 'month') {
-    //   availabilityInfo = `<p><strong>Availability Start Date:</strong> ${workspace.availabilityStartDate}</p>
-    //                        <p><strong>Availability End Date:</strong> ${workspace.availabilityEndDate}</p>`;
-    // }
 
     const workspaceInfo = `
         <p><strong>Property Name:</strong> ${workspace.propertyName}</p>
@@ -493,86 +555,18 @@ function displayWorkspaces() {
 }
 
 
-// function openWorkspaceModal(index) {
-//   const workspace = workspaces[index];
-//   document.getElementById('editPropertyName').value = workspace.propertyName;
-//   document.getElementById('editWorkspaceType').value = workspace.workspaceType;
-//   document.getElementById('editCapacity').value = workspace.capacity;
-
-//   const modal = document.getElementById('myModal');
-//   modal.style.display = 'block';
 
 
-//   document.getElementById('saveWorkspaceChangesBtn').onclick = function () {
-//     saveWorkspaceChanges(index);
-//     modal.style.display = 'none';
-//   };
-
-//   const span = document.getElementsByClassName('close')[0];
-//   span.onclick = function () {
-//     modal.style.display = 'none';
-//   };
-
-//   window.onclick = function (event) {
-//     if (event.target == modal) {
-//       modal.style.display = 'none';
-//     }
-//   };
-
-// }
 
 
-// 2ND VERSION
-// function openWorkspaceModal(index) {
-//   const workspace = workspaces[index];
-//   document.getElementById('editPropertyName').value = workspace.propertyName;
-//   document.getElementById('editWorkspaceType').value = workspace.workspaceType;
-//   document.getElementById('editCapacity').value = workspace.capacity;
 
-//   const modal = document.getElementById('myModal');
-//   modal.style.display = 'block';
-
-//   document.getElementById('saveWorkspaceChangesBtn').onclick = function () {
-//     if (validateWorkspaceChanges()) {
-//       saveWorkspaceChanges(index);
-//       modal.style.display = 'none';
-//     }
-//   };
-
-//   const span = document.getElementsByClassName('close')[0];
-//   span.onclick = function () {
-//     modal.style.display = 'none';
-//   };
-
-//   window.onclick = function (event) {
-//     if (event.target == modal) {
-//       modal.style.display = 'none';
-//     }
-//   };
-
-// }
-
-// function validateWorkspaceChanges() {
-//   const workspaceType = document.getElementById('editWorkspaceType').value;
-//   const leaseTerm = document.getElementById('editLeaseTerm').value;
-//   const availabilityStartDate = document.getElementById('editAvailabilityStartDate').value;
-//   const availabilityEndDate = document.getElementById('editAvailabilityEndDate').value;
-//   const price = document.getElementById('editPrice').value;
-
-//   if (!workspaceType || !leaseTerm || !availabilityStartDate || !availabilityEndDate || !price) {
-//     alert('Please fill out all required fields.');
-//     return false;
-//   }
-//   return true;
-// }
-
+// FUNCTION TO OPEN POP UP MODAL TO EDIT WORKSPACES
 function openWorkspaceModal(index) {
   const workspace = workspaces[index];
   document.getElementById('editPropertyName').value = workspace.propertyName;
   document.getElementById('editWorkspaceType').value = workspace.workspaceType;
   document.getElementById('editCapacity').value = workspace.capacity;
-  document.getElementById('editLeaseTerm').value = workspace.leaseTerm; // Set the value of editLeaseTerm
-
+  document.getElementById('editLeaseTerm').value = workspace.leaseTerm; 
 
   const modal = document.getElementById('workspaceEditModal');
   modal.style.display = 'block';
@@ -590,8 +584,6 @@ function openWorkspaceModal(index) {
     console.log('edit workspace close icon triggered')
   };
 
-
-
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = 'none';
@@ -599,6 +591,8 @@ function openWorkspaceModal(index) {
   };
 }
 
+
+// FUNCTION TO VALIDATE WORKSPACE CHANGES
 function validateWorkspaceChanges() {
   const workspaceType = document.getElementById('editWorkspaceType').value;
   const capacity = document.getElementById('editCapacity').value;
@@ -653,45 +647,11 @@ function validateWorkspaceChanges() {
     return false; // Return false if any required field is empty
   }
 
-  // If no alerts were triggered during lease term validation and all fields are filled out correctly
-  // if (!leaseTermAlertTriggered) {
-  //   const successfulWorkspaceListing = document.getElementById('successfulWorkspaceListing');
-  //   successfulWorkspaceListing.style.display = 'block';
-  //   document.getElementById('closeSuccessWorkspaceAddedBtn').onclick = function () {
-  //     successfulWorkspaceListing.style.display = 'none';
-  //   };
-  // } else {
-  //   // If an alert was triggered during lease term validation
-  //   const validationModal = document.getElementById('validationModal');
-  //   validationModal.style.display = 'block';
-  //   document.getElementById('closeValidationBtn').onclick = function () {
-  //     validationModal.style.display = 'none';
-  //   };
-  // }
-
   return true; // Return true if all validations pass
 }
 
 
-
-
-
-// function saveWorkspaceChanges(index) {
-//   workspaces[index] = {
-//     propertyName: document.getElementById('editPropertyName').value,
-//     workspaceType: document.getElementById('editWorkspaceType').value,
-//     capacity: document.getElementById('editCapacity').value,
-//     smokingAllowed: document.getElementById('editSmokingAllowed').checked,
-//     leaseTerm: document.getElementById('editLeaseTerm').value,
-//     availabilityStartDate: document.getElementById('editAvailabilityStartDate').value,
-//     availabilityEndDate: document.getElementById('editAvailabilityEndDate').value,
-//     price: document.getElementById('editPrice').value
-//   };
-
-//   saveWorkspacesToLocalStorage(); // Save changes to local storage
-//   displayWorkspaces(); // Update the displayed workspaces
-// }
-
+// FUNCTION TO SAVE CHANGES IN WORKSPACES
 function saveWorkspaceChanges(index) {
   const propertyName = document.getElementById('editPropertyName').value;
   const workspaceType = document.getElementById('editWorkspaceType').value;
@@ -702,7 +662,7 @@ function saveWorkspaceChanges(index) {
   const availabilityEndDate = document.getElementById('editAvailabilityEndDate').value;
   const price = document.getElementById('editPrice').value;
 
-  // Validate availability dates
+  // CONDITION: VALIDATE AVAILABILITY DATES
   let availabilityDatesValid = true;
 
   switch (leaseTerm) {
@@ -738,7 +698,7 @@ function saveWorkspaceChanges(index) {
       break;
   }
 
-  // Save changes only if availability dates are valid
+  // CONDITION: SAVE CHANGES ONLY IF AVAILABILITY DATES ARE VALID
   if (availabilityDatesValid) {
     workspaces[index] = {
       propertyName,
@@ -751,35 +711,27 @@ function saveWorkspaceChanges(index) {
       price
     };
 
-    saveWorkspacesToLocalStorage(); // Save changes to local storage
-    displayWorkspaces(); // Update the displayed workspaces
+    saveWorkspacesToLocalStorage(); 
+    displayWorkspaces(); 
   }
 }
 
 
-
-
-
-
+// FUNCTION TO DELETE WORKSPACE
 function deleteWorkspace(index) {
   workspaces.splice(index, 1);
   saveWorkspacesToLocalStorage();
   displayWorkspaces();
 }
 
+
+// FUNCTION TO SAVE PROPERTIES IN LOCAL STORAGE
 function savePropertiesToLocalStorage() {
   localStorage.setItem('properties', JSON.stringify(properties));
 }
 
+
+// FUNCTION TO SAVE WORKSPACES IN LOCAL STORAGE
 function saveWorkspacesToLocalStorage() {
   localStorage.setItem('workspaces', JSON.stringify(workspaces));
 }
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,203 @@
+/***************************************** SORT PROPERTY CONTAINER *****************************************/
+.sortPropertyContainer {
+    margin-top: 60px;
+    display: flex;
+    width: 90%;
+    /* background-color: rgba(224, 224, 224, 1); */
+    color: black;
+    margin-left: 5%;
+    border-radius: 5px;
+}
+
+
+
+/***************************************** SORT PROPERTY LEFT SIDE *****************************************/
+#sortPropertyLeftDiv {
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 40%;
+}
+
+/***************************************** SORT PROPERTY RIGHT SIDE *****************************************/
+#sortPropertyRightDiv {
+    margin-top: 20px;
+    margin-left: 5%;
+    width: 40%;
+}
+
+/***************************************** SORT PROPERTY USING ADDRESS AND NEIGHBORHOOD *****************************************/
+#sortAddressAndNeighborhoodLabel {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#sortAddressAndNeighborhood {
+    margin-left: 10px;
+}
+
+#sortAddressAndNeighborhood {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    /* transition: border-color 0.3s ease; */
+    margin-bottom: 0px;
+    width: 300px;
+    border-bottom: 1px solid white;
+}
+
+#sortAddressAndNeighborhood:focus {
+    /* Remove focus outline */
+    outline: none;
+}
+
+#sortAddressAndNeighborhood option {
+    /* Background color of options */
+    background-color: #282727;
+    /* Text color of options */
+    color: #fff;
+}
+
+/***************************************** SORT PROPERTY WITH PARKING GARAGE INCLUDED OR NOT *****************************************/
+#sortParkingIncludedLabel {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#filterParkingGarageIncludedBtn,
+#filterParkingGarageNotIncludedBtn,
+#filterPublicTranspoIncludedBtn,
+#filterPublicTranspoNotIncludedBtn {
+    width: 17%;
+    background-color: gray;
+    color: white;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#filterParkingGarageIncludedBtn:hover,
+#filterParkingGarageNotIncludedBtn:hover,
+#filterPublicTranspoIncludedBtn:hover,
+#filterPublicTranspoNotIncludedBtn:hover {
+    background-color: #212223;
+}
+
+/***************************************** SORT PROPERTY USING SQUARE FEET *****************************************/
+#sortSquareFeetLabel {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#sortSquareFeet {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    /* transition: border-color 0.3s ease; */
+    margin-bottom: 0px;
+    width: 300px;
+    border-bottom: 1px solid white;
+}
+
+#sortSquareFeet option {
+    /* Background color of options */
+    background-color: #282727;
+    /* Text color of options */
+    color: #fff;
+}
+
+/***************************************** SORT PROPERTY WITH NEARBY PUBLIC TRANSPORTATION OR NOT *****************************************/
+#sortNearPublicTranspoLabel {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+#filterPublicTranspoIncludedBtn,
+#filterPublicTranspoNotIncludedBtn {
+    width: 17%;
+    background-color: gray;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#filterPublicTranspoIncludedBtn:hover,
+#filterPublicTranspoNotIncludedBtn:hover {
+    background-color: gray;
+}
+
+#clearPropertySortingBtn {
+    margin-left: 57%;
+    width: 25%;
+    background-color: gray;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#clearPropertySortingBtn:hover {
+    background-color: gray;
+}
+
+#workspaceTypeFilterLabel {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.workspaceTypeFilterLabel {
+    margin-top: 5%;
+    text-align: center;
+}
+
+#workspaceTypeFilter {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    padding-left: 15px;
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    /* transition: border-color 0.3s ease; */
+    margin-bottom: 0px;
+    width: 300px;
+    border-bottom: 1px solid white;
+}
+
+#workspaceTypeFilter:focus {
+    /* Remove focus outline */
+    outline: none;
+}
+
+#workspaceTypeFilter option {
+    /* Background color of options */
+    background-color: #282727;
+    /* Text color of options */
+    color: #fff;
+}

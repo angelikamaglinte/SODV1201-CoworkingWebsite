@@ -127,7 +127,7 @@ a {
 /* Tagline Styling */
 
 #tagLine {
-    background-image: url('/images/backdrop images/backkdrop.jpg');
+    background-image: url('/images/backdrop\ images/backkdrop.jpg');
     /* Add the backdrop image as the background */
     background-size: auto 100%;
     /* Set width to auto and height to 100% */
@@ -141,8 +141,13 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
+
+#bigImage {
+    position: relative;
+    margin-top: 50px;
+}
+
 
 #inspiration {
     width: 55%;

@@ -317,11 +317,11 @@ input[type="checkbox"] { /* Parking Garage Included and Nearby Transportation Ch
     margin-top: 5%;
 }
 
-#listingDetails {
+#propertyListingDetails {
     color: white;
     margin-top: 5%;
     font-weight: bold;
-    font-size: x-large;
+    font-size: 50px;
     text-align: center;
 }
 
@@ -641,11 +641,11 @@ input[type="number"] {
     margin-top: 5%;
 }
 
-#listingDetails {
+#workspaceListingDetails {
     color: white;
     margin-top: 5%;
     font-weight: bold;
-    font-size: x-large;
+    font-size: 50px;
     text-align: center;
 }
 

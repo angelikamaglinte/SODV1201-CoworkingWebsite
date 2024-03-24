@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace Filter</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link your stylesheet if you have one -->
+</head>
+
+<body>
+    <h1>Workspace Filter</h1>
+
+    <!-- Search Bar -->
+    <div class="search">
+        <label for="search">Search by Name:</label>
+        <input type="text" id="search" placeholder="Search...">
+    </div>
+    <br>
+
+    <!-- Filters Section -->
+    <div class="filters">
+        <label for="sort">Sort by:</label>
+        <select id="sort">
+            <option value="name">Name</option>
+            <option value="neighbourhood">Neighbourhood</option>
+            <option value="workspace_type">Workspace Type</option>
+            <option value="capacity">Capacity</option>
+            <option value="price">Price</option>
+            <!-- Add more options if needed -->
+        </select>
+<br>
+<br>
+        <label><input type="checkbox" id="parking"> Parking</label>
+        <label><input type="checkbox" id="smoking"> Smoking Allowed</label>
+        <label><input type="checkbox" id="publicTransportation"> Public Transportation</label> <!-- New -->
+        <label for="squareFeet">Square Feet:</label>
+        <select id="squareFeet">
+            <option value="">Any</option>
+            <option value="100">100</option>
+            <option value="150">150</option>
+            <option value="200">200</option>
+            <option value="250">250</option>
+        </select>
+        <br>
+        <br>
+        <label for="capacity">Capacity:</label>
+        <select id="capacity">
+            <option value="">Any</option>
+            <option value="1">1</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+        </select>
+        <br>
+        <br>
+        <label for="startDate">Start Date:</label>
+        <input type="date" id="startDate">
+        <br>
+        <br>
+        <label for="endDate">End Date:</label>
+        <input type="date" id="endDate">
+        <br>
+        
+    </div>
+
+
+    <!-- Workspace List -->
+    <div id="workspace-list"></div>
+
+    <script src="testing1.js"></script> <!-- Link your JavaScript file -->
+</body>
+
+</html>
