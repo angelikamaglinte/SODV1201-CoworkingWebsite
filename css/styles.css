@@ -125,60 +125,9 @@ a {
 
 
 /* Tagline Styling */
-
-#tagLine {
-    background-image: url('/images/backdrop\ images/backkdrop.jpg');
-    /* Add the backdrop image as the background */
-    background-size: auto 100%;
-    /* Set width to auto and height to 100% */
-    background-position: left;
-    /* Position the background image on the left side */
-    background-repeat: no-repeat;
-    position: relative;
-    width: auto;
-    height: 800px;
-    /* Adjust height as needed */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.contentSection img {
+    width: 98%;
 }
-
-#bigImage {
-    position: relative;
-    margin-top: 50px;
-}
-
-
-#inspiration {
-    width: 55%;
-    position: relative;
-    top: 25%;
-    right: 7.5%;
-
-}
-
-#starts {
-    width: 40%;
-    position: relative;
-    left: 12%;
-    top: -10%;
-}
-
-#here {
-    width: 22.5%;
-    position: relative;
-    left: 20%;
-    top: -10%;
-
-}
-
-#miniImage {
-    position: relative;
-    left: 37.5%;
-    top: 45%;
-    height: 40%;
-}
-
 
 /* Join us Button Styling */
 
