@@ -14,13 +14,13 @@ window.onload = function () {
   if (localStorage.getItem('workspaces')) {
     workspaces = JSON.parse(localStorage.getItem('workspaces'));
   }
-  displayProperties(); 
+  displayProperties();
   displayWorkspaces();
-  populatePropertyDropdown(); 
+  populatePropertyDropdown();
   const storedSearchQuery = localStorage.getItem('searchQuery');
   if (storedSearchQuery) {
     document.getElementById('workspaceSearch').value = storedSearchQuery;
-    searchWorkspaces(); 
+    searchWorkspaces();
   }
 };
 
@@ -88,18 +88,18 @@ function validateAndAddProperty() {
 // FUNCTION TO SORT PROPERTIES BY ADDRESS AND NEIGHBORHOOD
 // document.getElementById('sortAddressAndNeighborhood').addEventListener('change', sortPropertiesByAddressAndNeighborhood)
 // Call the sorting function based on the selected option
-document.getElementById('sortAddressAndNeighborhood').addEventListener('change', function() {
+document.getElementById('sortAddressAndNeighborhood').addEventListener('change', function () {
   const sortBy = this.value;
   if (sortBy === 'addressAscending') {
-      sortPropertiesByAddressAsc();
+    sortPropertiesByAddressAsc();
   } else if (sortBy === 'addressDescending') {
-      sortPropertiesByAddressDesc();
+    sortPropertiesByAddressDesc();
   } else if (sortBy === 'neighborhoodAscending') {
-      sortPropertiesByNeighborhoodAsc();
+    sortPropertiesByNeighborhoodAsc();
   } else if (sortBy === 'neighborhoodDescending') {
-      sortPropertiesByNeighborhoodDesc();
+    sortPropertiesByNeighborhoodDesc();
   }
-  
+
   // After sorting, display the properties
   displayProperties();
 });
@@ -130,11 +130,11 @@ function sortPropertiesByNeighborhoodDesc() {
 // FUNCTION TO SORT PROPERTIES BY ADDRESS AND NEIGHBORHOOD IN ASCENDING OR DESCENDING ORDER
 function sortPropertiesBy(key, order) {
   properties.sort((a, b) => {
-      if (order === 'asc') {
-          return a[key].localeCompare(b[key]);
-      } else {
-          return b[key].localeCompare(a[key]);
-      }
+    if (order === 'asc') {
+      return a[key].localeCompare(b[key]);
+    } else {
+      return b[key].localeCompare(a[key]);
+    }
   });
 
   console.log('Properties after sorting:', properties);
@@ -224,8 +224,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // FUNCTION TO CLEAR SORT PROPERTIES
-document.getElementById('clearPropertySortingBtn').addEventListener('click', function() {
-  
+document.getElementById('clearPropertySortingBtn').addEventListener('click', function () {
+
   // CALL DISPLAY PROPERTIES AFTER SORTING
   displayProperties(properties);
 });
@@ -239,11 +239,11 @@ function displayProperties(propertiesArray = properties) {
 
   // Render properties based on the provided or default properties array
   propertiesArray.forEach((property, index) => {
-      // Create HTML elements to display property information
-      const propertyDiv = document.createElement('div');
-      propertyDiv.classList.add('property');
+    // Create HTML elements to display property information
+    const propertyDiv = document.createElement('div');
+    propertyDiv.classList.add('property');
 
-      const propertyInfo = `
+    const propertyInfo = `
           <p><strong>Address:</strong> ${property.address}</p>
           <p><strong>Neighborhood:</strong> ${property.neighborhood}</p>
           <p><strong>Square Feet:</strong> ${property.squareFeet}</p>
@@ -251,21 +251,21 @@ function displayProperties(propertiesArray = properties) {
           <p><strong>Near Public Transportation:</strong> ${property.publicTranspo ? 'Yes' : 'No'}</p>
       `;
 
-      // Create update and delete buttons
-      const updateButton = document.createElement('button');
-      updateButton.textContent = 'Update Property';
-      updateButton.onclick = () => openPropertyEditModal(index);
+    // Create update and delete buttons
+    const updateButton = document.createElement('button');
+    updateButton.textContent = 'Update Property';
+    updateButton.onclick = () => openPropertyEditModal(index);
 
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Delete Property';
-      deleteButton.onclick = () => deleteProperty(index);
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete Property';
+    deleteButton.onclick = () => deleteProperty(index);
 
-      // Append property information and buttons to the property div
-      propertyDiv.innerHTML = propertyInfo;
-      propertyDiv.appendChild(updateButton);
-      propertyDiv.appendChild(deleteButton);
+    // Append property information and buttons to the property div
+    propertyDiv.innerHTML = propertyInfo;
+    propertyDiv.appendChild(updateButton);
+    propertyDiv.appendChild(deleteButton);
 
-      propertyList.appendChild(propertyDiv);
+    propertyList.appendChild(propertyDiv);
   });
 }
 
@@ -276,7 +276,7 @@ function openPropertyEditModal(index) {
   const property = properties[index];
   document.getElementById('editAddress').value = property.address;
   document.getElementById('editNeighborhood').value = property.neighborhood;
-  document.getElementById('editSquareFeet').value = property.squareFeet; 
+  document.getElementById('editSquareFeet').value = property.squareFeet;
 
   const selectedSquareFeet = property.squareFeet;
   document.getElementById('editSquareFeet').innerText = selectedSquareFeet;
@@ -322,7 +322,7 @@ function validatePropertyChanges() {
 function savePropertyChanges(index) {
   const updatedAddress = document.getElementById('editAddress').value;
   const updatedNeighborhood = document.getElementById('editNeighborhood').value;
-  const updatedSquareFeet = document.getElementById('editSquareFeet').value; 
+  const updatedSquareFeet = document.getElementById('editSquareFeet').value;
 
   const updatedParkingGarage = document.getElementById('editParkingGarage').checked;
   const updatedPublicTranspo = document.getElementById('editPublicTranspo').checked;
@@ -335,8 +335,8 @@ function savePropertyChanges(index) {
     publicTranspo: updatedPublicTranspo
   };
 
-  savePropertiesToLocalStorage(); 
-  displayProperties(); 
+  savePropertiesToLocalStorage();
+  displayProperties();
 }
 
 
@@ -387,17 +387,30 @@ function editSetLeaseTerm(value) {
 
 
 // FUNCTION TO POPULATE PROPERTY DROPDOWN BUTTON IN WORKSPACE FORM
+// function populatePropertyDropdown() {
+//   const propertyDropdown = document.getElementById('propertyName');
+//   propertyDropdown.innerHTML = ''; 
+
+//   properties.forEach((property, index) => {
+//     const option = document.createElement('option');
+//     option.value = index; 
+//     option.textContent = property.address; 
+//     propertyDropdown.appendChild(option); 
+//   });
+// }
 function populatePropertyDropdown() {
+  console.log("Populating property dropdown...");
   const propertyDropdown = document.getElementById('propertyName');
-  propertyDropdown.innerHTML = ''; 
+  propertyDropdown.innerHTML = '';
 
   properties.forEach((property, index) => {
     const option = document.createElement('option');
-    option.value = index; 
-    option.textContent = property.address; 
-    propertyDropdown.appendChild(option); 
+    option.value = index;
+    option.textContent = property.address;
+    propertyDropdown.appendChild(option);
   });
 }
+
 
 
 // FUNCTION TO VALIDATE AND ADD WORKSPACE
@@ -507,7 +520,7 @@ function validateAndAddWorkspace() {
 // SORTING WORKSPACES
 
 // Add event listener to the select dropdown for filtering
-document.getElementById('workspaceTypeFilter').addEventListener('change', function() {
+document.getElementById('workspaceTypeFilter').addEventListener('change', function () {
   const filterType = this.value; // Get the selected filter type
   console.log("Filter Type: ", filterType); // Check the selected filter type
   displayWorkspaces(workspaces, filterType); // Call displayWorkspaces with the selected filter type
@@ -566,7 +579,7 @@ function openWorkspaceModal(index) {
   document.getElementById('editPropertyName').value = workspace.propertyName;
   document.getElementById('editWorkspaceType').value = workspace.workspaceType;
   document.getElementById('editCapacity').value = workspace.capacity;
-  document.getElementById('editLeaseTerm').value = workspace.leaseTerm; 
+  document.getElementById('editLeaseTerm').value = workspace.leaseTerm;
 
   const modal = document.getElementById('workspaceEditModal');
   modal.style.display = 'block';
@@ -711,8 +724,8 @@ function saveWorkspaceChanges(index) {
       price
     };
 
-    saveWorkspacesToLocalStorage(); 
-    displayWorkspaces(); 
+    saveWorkspacesToLocalStorage();
+    displayWorkspaces();
   }
 }
 
